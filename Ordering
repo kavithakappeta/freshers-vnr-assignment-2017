@@ -1,0 +1,149 @@
+package com.mkyong;
+
+import java.net.StandardSocketOptions;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{   
+	int totalPrice=0;
+	ArrayList<Entries> selectedItems=new ArrayList<Entries>();
+	ArrayList<Entries> order=new ArrayList<Entries>();
+	public class Entries
+	{
+		int id;
+		String name;
+		int price;
+		Entries(int id,String name,int price)
+		{
+			this.id=id;
+			this.name=name;
+			this.price=price;
+		}
+	}
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" ); 
+        App obj=new App();
+        obj.placeOrder();
+    }
+    
+    public void menu()
+    {
+    	ArrayList<String> menu= new ArrayList<String>();
+    	menu.add("Starters");
+    	menu.add("Biryani");
+    	menu.add("Curries");
+    	menu.add("Desserts");
+    	ArrayList<Entries> Starters= new ArrayList<Entries>();
+    	Starters.add(new Entries(1,"Veg Manchuria",60));
+    	Starters.add(new Entries(2,"Gobi Manchuria",80));
+    	Starters.add(new Entries(3,"Chilli Chicken",120));
+    	Starters.add(new Entries(4,"Chicken Manchuria",120));
+    	Starters.add(new Entries(5,"Chicken65",130));
+    	ArrayList<Entries> Biryani= new ArrayList<Entries>();
+    	Biryani.add(new Entries(1,"Veg Biryaani",190));
+    	Biryani.add(new Entries(2,"Spl Veg Biryaani",220));
+    	Biryani.add(new Entries(3,"Chicken Biryaani",200));
+    	Biryani.add(new Entries(4,"hicken65 Biryaani",250));
+    	ArrayList<Entries> Curries= new ArrayList<Entries>();
+    	Curries.add(new Entries(1,"Paneer Buter Masala",150));
+    	Curries.add(new Entries(2,"Butter Chicken",170));
+    	Curries.add(new Entries(3,"Chicken Masala",200));
+    	ArrayList<Entries> Desserts= new ArrayList<Entries>();
+    	Desserts.add(new Entries(1,"Icecream",90));
+    	Desserts.add(new Entries(2,"GulabJamun",40));
+    	
+    	//display menu
+    	for(int i=0;i<menu.size();i++)
+    	{
+    		System.out.println(menu.get(i));
+    	}
+    	Scanner sc=new Scanner(System.in);
+    	String str=sc.next(); //contains the selected menu item
+    	if(menu.contains(str))
+    	{
+    		switch(str)
+    		{
+    		case "Starters":
+    			selectedItems=Starters;
+    			Iterator<Entries> itr=Starters.iterator();
+    			while(itr.hasNext())
+    			{
+    				Entries etr=itr.next();
+    				System.out.println(etr.id+"  "+etr.name+"  "+etr.price);
+    			}
+    			break;
+    		case "Biryani":
+    			selectedItems=Biryani;
+    			itr=Biryani.iterator();
+    			while(itr.hasNext())
+    			{
+    				Entries etr=itr.next();
+    				System.out.println(etr.id+"  "+etr.name+"  "+etr.price);
+    			}
+    			break;
+    		case "Curries": 
+    			selectedItems=Curries;
+    			itr=Curries.iterator();
+    			while(itr.hasNext())
+    			{
+    				Entries etr=itr.next();
+    				System.out.println(etr.id+"  "+etr.name+"  "+etr.price);
+    			}
+    			break;
+    		case "Desserts":
+    			selectedItems=Desserts;
+    			itr=Desserts.iterator();
+    			while(itr.hasNext())
+    			{
+    				Entries etr=itr.next();
+    				System.out.println(etr.id+"  "+etr.name+"  "+etr.price);
+    			}
+    			break;
+    		}
+    	}
+    	
+    	System.out.println("size="+selectedItems.size());
+    	System.out.println("choose the items: Enter corresponding digits");
+    	while(sc.hasNext())
+    	{
+    		int n=sc.nextInt();
+    		if(n==-1)
+    		{
+    			break;
+    		}
+    		else{
+    		order.add(selectedItems.get(n-1));
+    		System.out.println("success");}
+    	}
+    	sc.close();
+    	
+    	//display selected items and price estimate
+    	System.out.println("size="+order.size());
+    	Iterator<Entries> itr=order.iterator();
+    	System.out.println("Selected Items");
+    	while(itr.hasNext())
+    	{
+    		//System.out.println(itr.next().name);
+    		Entries etr=itr.next();
+    		System.out.println(etr.name);
+    		totalPrice=totalPrice+etr.price;
+    	}
+    	System.out.println("total="+totalPrice);
+    	
+   }
+    
+    public void placeOrder()
+    {
+    	System.out.println("select menu items");
+    	menu();
+    	
+    }
+}
