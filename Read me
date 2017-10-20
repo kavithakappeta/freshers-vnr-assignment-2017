@@ -1,0 +1,10 @@
+When ever a customer enters the restaurant the manager issues him the menu card and the customer has to choose the items from menu list as follows:
+Select any of the main menu options displayed on the screen by entering the titles displayed
+Once we select one of the menu option then we get sub items in that main menu element with corrresponding id's
+Select the no.of sub items by entering the id's of the elements displyed
+If you are done with ordering enter '-1' to exit from menu
+Once you complete the order the manager orders the master chef wgo inturn orders his cochefs during which the customer will be waiting for the order
+Once the order is done server brings the order and serves to the customer
+The customer will have the order and after completion he/she requests a bill
+The manager generates the bill and issues it to the customer.
+Then customer pays the bill 
